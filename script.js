@@ -24,7 +24,17 @@ console.log(myLibrary);
 
 function displayBook(){
     const container = document.querySelector(".container");
+
+    
+    
+
     myLibrary.forEach((book) => {
+        const cardDiv = document.createElement("div");
+        cardDiv.classList.add("card");
+        container.appendChild(cardDiv);
+    
+        const card = document.querySelector(".card");
+
         let pTitle = document.createElement("p");
 
         //Make this a function (?) appendText function
@@ -35,15 +45,15 @@ function displayBook(){
 
         const titleText = document.createTextNode(book.title);
         pTitle.appendChild(titleText);
-        container.appendChild(pTitle);
+        card.appendChild(pTitle);
         
         const authorText = document.createTextNode(book.author);
         pAuthor.appendChild(authorText);
-        container.appendChild(pAuthor);
+        card.appendChild(pAuthor);
 
         const pagesText = document.createTextNode(book.pages);
         pPages.appendChild(pagesText);
-        container.appendChild(pPages);
+        card.appendChild(pPages);
 
         let hasReadText;
         if(book.hasRead ) {
@@ -53,7 +63,7 @@ function displayBook(){
              hasReadText = document.createTextNode("not yet");
         }
         pRead.appendChild(hasReadText);
-        container.appendChild(pRead);
+        card.appendChild(pRead);
     })
 }
 
