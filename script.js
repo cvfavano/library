@@ -1,6 +1,7 @@
 //store all books here
 let myLibrary = [];
 
+//isnt this an object
 function Book(title,author,pages,hasRead){
     //constructor
     this.title = title,
@@ -11,10 +12,50 @@ function Book(title,author,pages,hasRead){
         return `The ${title} by ${author}, ${pages} pages, ${hasRead} read`;
     }
 }
-function addBookToLibrary(){
-    
-}
 
 
 const theHobbit = new Book("The Hobbit", "JRR Tolkien", 295, true);
-console.log(theHobbit.info);
+const toKill = new Book("To Kill a Mockingbird", "Harper Lee", 281, true);
+
+myLibrary.push(theHobbit);
+myLibrary.push(toKill);
+
+console.log(myLibrary);
+
+function displayBook(){
+    const container = document.querySelector(".container");
+    myLibrary.forEach((book) => {
+        let pTitle = document.createElement("p");
+
+        //Make this a function (?) appendText function
+        let pAuthor = document.createElement("p");
+        let pPages = document.createElement("p");
+        let pRead = document.createElement("p");
+
+
+        const titleText = document.createTextNode(book.title);
+        pTitle.appendChild(titleText);
+        container.appendChild(pTitle);
+        
+        const authorText = document.createTextNode(book.author);
+        pAuthor.appendChild(authorText);
+        container.appendChild(pAuthor);
+
+        const pagesText = document.createTextNode(book.pages);
+        pPages.appendChild(pagesText);
+        container.appendChild(pPages);
+
+        let hasReadText;
+        if(book.hasRead ) {
+             hasReadText = document.createTextNode("yes");
+        }
+        else {
+             hasReadText = document.createTextNode("not yet");
+        }
+        pRead.appendChild(hasReadText);
+        container.appendChild(pRead);
+    })
+}
+
+
+displayBook();
