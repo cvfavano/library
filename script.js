@@ -27,13 +27,14 @@ function displayBook(){
 
     
     
-
-    myLibrary.forEach((book) => {
+//how to add index to foreach
+    myLibrary.forEach((book, i) => {
         const cardDiv = document.createElement("div");
         cardDiv.classList.add("card");
+        cardDiv.classList.add("card-" + i);
         container.appendChild(cardDiv);
     
-        const card = document.querySelector(".card");
+        const card = document.querySelector(".card-"+ i);
 
         let pTitle = document.createElement("p");
 
