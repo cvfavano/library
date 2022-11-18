@@ -1,6 +1,15 @@
 //store all books here
 let myLibrary = [];
 
+const theHobbit = new Book("The Hobbit", "JRR Tolkien", 295, true);
+const toKill = new Book("To Kill a Mockingbird", "Harper Lee", 281, true);
+const hotZone = new Book("Hot Zone", "Richard Preston", 420, true);
+const status = new Book("Status Anxiety", "Alain de Botton", 320, true);
+
+myLibrary.push(theHobbit);
+myLibrary.push(toKill);
+myLibrary.push(hotZone);
+
 //isnt this an object
 function Book(title,author,pages,hasRead){
     //constructor
@@ -14,11 +23,7 @@ function Book(title,author,pages,hasRead){
 }
 
 
-const theHobbit = new Book("The Hobbit", "JRR Tolkien", 295, true);
-const toKill = new Book("To Kill a Mockingbird", "Harper Lee", 281, true);
 
-myLibrary.push(theHobbit);
-myLibrary.push(toKill);
 
 console.log(myLibrary);
 
