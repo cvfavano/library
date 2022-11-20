@@ -22,17 +22,9 @@ function Book(title,author,pages,hasRead){
     }
 }
 
-
-
-
-console.log(myLibrary);
-
 function displayBook(){
     const container = document.querySelector(".card-container");
 
-    
-    
-//how to add index to foreach
     myLibrary.forEach((book, i) => {
         const cardDiv = document.createElement("div");
         cardDiv.classList.add("card");
@@ -44,6 +36,7 @@ function displayBook(){
         let pTitle = document.createElement("p");
 
         //Make this a function (?) appendText function
+        //create p tags and append
         let pAuthor = document.createElement("p");
         let pPages = document.createElement("p");
         let pRead = document.createElement("p");
@@ -70,6 +63,12 @@ function displayBook(){
         }
         pRead.appendChild(hasReadText);
         card.appendChild(pRead);
+
+        //create remove button and append
+        let button = document.createElement("button");
+        button.dataset.arrayIndex = i;
+        button.textContent = "Remove";
+        card.appendChild(button);
     })
 }
 
