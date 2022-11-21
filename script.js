@@ -21,8 +21,8 @@ function Book(title,author,pages,hasRead){
         return `The ${title} by ${author}, ${pages} pages, ${hasRead} read`;
     }
 }
-
-function displayBook(){
+//refactor this
+function bookAdministration(){
     const container = document.querySelector(".card-container");
 
     myLibrary.forEach((book, i) => {
@@ -69,8 +69,43 @@ function displayBook(){
         button.dataset.arrayIndex = i;
         button.textContent = "Remove";
         card.appendChild(button);
+        button.className= 'index-' + i;
+
+
+
+button.addEventListener('click', removeBook);
+
     })
 }
 
+function deleteBook(){
 
-displayBook();
+}
+
+//function appendText(){}
+
+//function createCard(){}
+
+
+function clickHandler(event){
+
+//console.log(removeButton.dataset.arrayIndex);
+}
+function removeBook(event){
+    console.log(event.target.getAttribute('data-array-index'));
+    const classname = event.srcElement.className;
+    const index = classname.match(/\d/g).join('');
+
+    //remove from array 
+    myLibrary.splice(index, 1);
+    console.log(myLibrary);
+
+    //remove from display
+    const card = document.querySelector('.card-' + index);
+    card.remove();
+}
+//appendEventListener(buttonClass, e){}
+
+//toggleHasRead(){}
+
+bookAdministration();
