@@ -86,11 +86,9 @@ function deleteBook(){
 //function createCard(){}
 
 
-
-//RECONCILE INDEX AND ARRAY INDEX WHEN A BOOK IS REMOVED, maybe separate functions. 
-//reorder somehow.  0
 function removeBook(event, id){
     console.log(event.target.getAttribute('data-array-index'));
+    console.log(event.id)
     const classname = event.srcElement.className;
     const index = classname.match(/\d/g).join('');
 
@@ -106,6 +104,7 @@ function removeBook(event, id){
 
 //toggleHasRead(){}
 
+//use this for adding new book's ID
 function getMaxID(arr){
     const idList = arr.map(object => {return object.id});
     const maxID = Math.max(...idList);
