@@ -1,18 +1,20 @@
 //store all books here
 let myLibrary = [];
 
-const theHobbit = new Book("The Hobbit", "JRR Tolkien", 295, true);
-const toKill = new Book("To Kill a Mockingbird", "Harper Lee", 281, true);
-const hotZone = new Book("Hot Zone", "Richard Preston", 420, true);
-const status = new Book("Status Anxiety", "Alain de Botton", 320, true);
+const theHobbit = new Book(1,"The Hobbit", "JRR Tolkien", 295, true);
+const toKill = new Book(2,"To Kill a Mockingbird", "Harper Lee", 281, true);
+const hotZone = new Book(3, "Hot Zone", "Richard Preston", 420, true);
+const statusAnxiety = new Book(4, "Status Anxiety", "Alain de Botton", 320, true);
 
 myLibrary.push(theHobbit);
 myLibrary.push(toKill);
 myLibrary.push(hotZone);
+myLibrary.push(statusAnxiety);
 
 //isnt this an object
-function Book(title,author,pages,hasRead){
+function Book(id,title,author,pages,hasRead){
     //constructor
+    this.id = id,
     this.title = title,
     this.author = author,
     this.pages = pages,
@@ -71,27 +73,23 @@ function bookAdministration(){
         card.appendChild(button);
         button.className= 'index-' + i;
 
-
-
-button.addEventListener('click', removeBook);
-
-    })
-}
+        button.addEventListener('click', removeBook);
+    })}
 
 function deleteBook(){
 
 }
+
 
 //function appendText(){}
 
 //function createCard(){}
 
 
-function clickHandler(event){
 
-//console.log(removeButton.dataset.arrayIndex);
-}
-function removeBook(event){
+//RECONCILE INDEX AND ARRAY INDEX WHEN A BOOK IS REMOVED, maybe separate functions. 
+//reorder somehow.  0
+function removeBook(event, id){
     console.log(event.target.getAttribute('data-array-index'));
     const classname = event.srcElement.className;
     const index = classname.match(/\d/g).join('');
@@ -107,5 +105,11 @@ function removeBook(event){
 //appendEventListener(buttonClass, e){}
 
 //toggleHasRead(){}
+
+function getMaxID(arr){
+    const idList = arr.map(object => {return object.id});
+    const maxID = Math.max(...idList);
+    return maxID;
+}
 
 bookAdministration();
