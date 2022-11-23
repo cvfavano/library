@@ -73,12 +73,10 @@ function bookAdministration(){
         card.appendChild(button);
         button.className= 'index-' + i;
 
-        button.addEventListener('click', removeBook);
+        button.addEventListener('click', deleteBook);
     })}
 
-function deleteBook(){
 
-}
 
 
 //function appendText(){}
@@ -86,7 +84,7 @@ function deleteBook(){
 //function createCard(){}
 
 
-function removeBook(event, id){
+function deleteBook(event, id){
     console.log(event.target.getAttribute('data-array-index'));
     console.log(event.id)
     const classname = event.srcElement.className;
