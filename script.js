@@ -30,10 +30,10 @@ function bookAdministration(){
     myLibrary.forEach((book, i) => {
         const cardDiv = document.createElement("div");
         cardDiv.classList.add("card");
-        cardDiv.classList.add("card-" + i);
+        cardDiv.classList.add("card-" + book.id);
         container.appendChild(cardDiv);
     
-        const card = document.querySelector(".card-"+ i);
+        const card = document.querySelector(".card-"+ book.id);
 
         let pTitle = document.createElement("p");
 
@@ -68,10 +68,10 @@ function bookAdministration(){
 
         //create remove button and append
         let button = document.createElement("button");
-        button.dataset.arrayIndex = i;
+        button.dataset.bookId = book.id;
         button.textContent = "Remove";
         card.appendChild(button);
-        button.className= 'index-' + i;
+        button.className= 'index-' + book.id;
 
         button.addEventListener('click', deleteBook);
     })}
@@ -84,14 +84,18 @@ function bookAdministration(){
 //function createCard(){}
 
 
+//fix this to use id // remove classname and index vars
 function deleteBook(event, id){
-    console.log(event.target.getAttribute('data-array-index'));
-    console.log(event.id)
     const classname = event.srcElement.className;
     const index = classname.match(/\d/g).join('');
 
+    const matchIndex = myLibrary.findIndex((i) =>{
+        return i.id == event.target.getAttribute('data-book-id');
+    } )
+  
+
     //remove from array 
-    myLibrary.splice(index, 1);
+    myLibrary.splice(matchIndex, 1);
     console.log(myLibrary);
 
     //remove from display
