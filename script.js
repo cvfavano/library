@@ -36,13 +36,18 @@ function bookAdministration(){
         const card = document.querySelector(".card-"+ book.id);
 
         let pTitle = document.createElement("p");
-
+        pTitle.classList.add("title");
+        
         //Make this a function (?) appendText function
         //create p tags and append
         let pAuthor = document.createElement("p");
+        pAuthor.classList.add("author");
+        
         let pPages = document.createElement("p");
-        let pRead = document.createElement("p");
+        pPages.classList.add("page-number");
 
+        let pRead = document.createElement("p");
+        pRead.classList.add("read-status")
 
         const titleText = document.createTextNode(book.title);
         pTitle.appendChild(titleText);
@@ -71,7 +76,7 @@ function bookAdministration(){
         button.dataset.bookId = book.id;
         button.textContent = "Remove";
         card.appendChild(button);
-        button.className= 'index-' + book.id;
+        button.className= 'remove-btn index-' + book.id;
 
         button.addEventListener('click', deleteBook);
     })}
