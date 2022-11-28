@@ -29,3 +29,16 @@
 .title {
     font-weight: bold;
 }
+
+.remove-btn {
+    margin-top: 20px;
+    padding: 2px 10px;
+    border-radius: 12px;
+    border: 1px solid #333;
+}
+
+.remove-btn:hover {
+    background: #123;
+    color: #fff;
+    transition: 0.5s;
+}
