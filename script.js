@@ -27,7 +27,7 @@ function Book(id,title,author,pages,hasRead){
 function bookAdministration(){
     const container = document.querySelector(".card-container");
 
-    myLibrary.forEach((book, i) => {
+    myLibrary.forEach((book) => {
         const cardDiv = document.createElement("div");
         cardDiv.classList.add("card");
         cardDiv.classList.add("card-" + book.id);
@@ -61,25 +61,42 @@ function bookAdministration(){
         pPages.appendChild(pagesText);
         card.appendChild(pPages);
 
-        let hasReadText;
+        let hasReadText = document.createElement("button");
         if(book.hasRead ) {
-             hasReadText = document.createTextNode("yes");
+            hasReadText.textContent = "yes";
+            hasReadText.className ='btn read';
         }
         else {
-             hasReadText = document.createTextNode("not yet");
+             hasReadText.textContent = "no";
+             hasReadText.className ='btn not-read';
         }
-        pRead.appendChild(hasReadText);
-        card.appendChild(pRead);
+        card.appendChild(hasReadText);
 
         //create remove button and append
-        let button = document.createElement("button");
-        button.dataset.bookId = book.id;
-        button.textContent = "Remove";
-        card.appendChild(button);
-        button.className= 'remove-btn index-' + book.id;
+        let removebutton = document.createElement("button");
+        removebutton.dataset.bookId = book.id;
+        removebutton.textContent = "Remove";
+        card.appendChild(removebutton);
+        removebutton.className = 'remove-btn index-' + book.id;
 
-        button.addEventListener('click', deleteBook);
-    })}
+        removebutton.addEventListener('click',  (e) => {
+            const matchIndex = myLibrary.findIndex((i) =>{
+  
+                return i.id == book.id;
+            } )
+                  
+            //remove from array 
+            myLibrary.splice(matchIndex, 1);
+        
+            //remove from display
+            const card = document.querySelector('.card-' + book.id);
+            card.remove();
+
+        });
+    //    hasReadText.addEventListener('click', toggleHasRead(event, book.hasRead));
+    })
+    
+}
 
 
 
@@ -90,26 +107,26 @@ function bookAdministration(){
 
 
 //fix this to use id // remove classname and index vars
-function deleteBook(event, id){
-    const classname = event.srcElement.className;
-    const index = classname.match(/\d/g).join('');
-
+function deleteBook(bookId){
+console.log(bookId)
     const matchIndex = myLibrary.findIndex((i) =>{
-        return i.id == event.target.getAttribute('data-book-id');
+        console.log(i)
+        return i.id == bookId;
     } )
   
 
     //remove from array 
     myLibrary.splice(matchIndex, 1);
-    console.log(myLibrary);
 
     //remove from display
-    const card = document.querySelector('.card-' + index);
+    const card = document.querySelector('.card-' + bookId);
     card.remove();
 }
 //appendEventListener(buttonClass, e){}
 
-//toggleHasRead(){}
+function toggleHasRead(event){
+    console.log(event)
+}
 
 //use this for adding new book's ID
 function getMaxID(arr){
