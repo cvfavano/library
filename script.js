@@ -2,7 +2,7 @@
 let myLibrary = [];
 
 const theHobbit = new Book(1,"The Hobbit", "JRR Tolkien", 295, true);
-const toKill = new Book(2,"To Kill a Mockingbird", "Harper Lee", 281, true);
+const toKill = new Book(2,"To Kill a Mockingbird", "Harper Lee", 281, false);
 const hotZone = new Book(3, "Hot Zone", "Richard Preston", 420, true);
 const statusAnxiety = new Book(4, "Status Anxiety", "Alain de Botton", 320, true);
 
@@ -81,7 +81,6 @@ function bookAdministration(){
 
         removebutton.addEventListener('click',  (e) => {
             const matchIndex = myLibrary.findIndex((i) =>{
-  
                 return i.id == book.id;
             } )
                   
@@ -93,9 +92,21 @@ function bookAdministration(){
             card.remove();
 
         });
-    //    hasReadText.addEventListener('click', toggleHasRead(event, book.hasRead));
+
+        hasReadText.addEventListener('click', (e) => {
+            
+            if(book.hasRead){
+                book.hasRead = false;
+                hasReadText.textContent = 'no';
+            }
+
+            else{
+                book.hasRead = true;
+                hasReadText.textContent = 'yes';
+            }
+        });
+        
     })
-    
 }
 
 
@@ -106,27 +117,7 @@ function bookAdministration(){
 //function createCard(){}
 
 
-//fix this to use id // remove classname and index vars
-function deleteBook(bookId){
-console.log(bookId)
-    const matchIndex = myLibrary.findIndex((i) =>{
-        console.log(i)
-        return i.id == bookId;
-    } )
-  
 
-    //remove from array 
-    myLibrary.splice(matchIndex, 1);
-
-    //remove from display
-    const card = document.querySelector('.card-' + bookId);
-    card.remove();
-}
-//appendEventListener(buttonClass, e){}
-
-function toggleHasRead(event){
-    console.log(event)
-}
 
 //use this for adding new book's ID
 function getMaxID(arr){
