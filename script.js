@@ -61,16 +61,28 @@ function bookAdministration(){
         pPages.appendChild(pagesText);
         card.appendChild(pPages);
 
-        let hasReadText = document.createElement("button");
+        let hasReadDiv = document.createElement("div");
+        let pTitleRead = document.createElement("p");
+        let readHeader = document.createTextNode('Read?')
+        pTitleRead.appendChild(readHeader);
+        hasReadDiv.appendChild(pTitleRead);
+
+        let pReadText = document.createElement("p");
         if(book.hasRead ) {
-            hasReadText.textContent = "yes";
-            hasReadText.className =' flag btn read';
+            pReadText.textContent = "yes";
+            hasReadDiv.className =' flag btn read';
         }
         else {
-             hasReadText.textContent = "no";
-             hasReadText.className ='flag btn not-read';
+            pReadText.textContent = "no";
+            hasReadDiv.className ='flag btn not-read';
         }
-        card.appendChild(hasReadText);
+        hasReadDiv.appendChild(pReadText);
+        
+        
+        
+        card.appendChild(hasReadDiv);
+
+
 
         //create remove button and append
         let removebutton = document.createElement("button");
@@ -93,18 +105,18 @@ function bookAdministration(){
 
         });
 
-        hasReadText.addEventListener('click', (e) => {
+        hasReadDiv.addEventListener('click', (e) => {
             
             if(book.hasRead){
                 book.hasRead = false;
-                hasReadText.textContent = 'no';
-                hasReadText.className = 'flag btn not-read';
+                pReadText.textContent = 'no';
+                hasReadDiv.className = 'flag btn not-read';
             }
 
             else{
                 book.hasRead = true;
-                hasReadText.textContent = 'yes';
-                hasReadText.className = 'flag btn read';
+                pReadText.textContent = 'yes';
+                hasReadDiv.className = 'flag btn read';
             }
         });
         
