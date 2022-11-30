@@ -64,11 +64,11 @@ function bookAdministration(){
         let hasReadText = document.createElement("button");
         if(book.hasRead ) {
             hasReadText.textContent = "yes";
-            hasReadText.className ='btn read';
+            hasReadText.className =' flag btn read';
         }
         else {
              hasReadText.textContent = "no";
-             hasReadText.className ='btn not-read';
+             hasReadText.className ='flag btn not-read';
         }
         card.appendChild(hasReadText);
 
@@ -98,11 +98,13 @@ function bookAdministration(){
             if(book.hasRead){
                 book.hasRead = false;
                 hasReadText.textContent = 'no';
+                hasReadText.className = 'flag btn not-read';
             }
 
             else{
                 book.hasRead = true;
                 hasReadText.textContent = 'yes';
+                hasReadText.className = 'flag btn read';
             }
         });
         
