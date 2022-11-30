@@ -57,7 +57,7 @@ function bookAdministration(){
         pAuthor.appendChild(authorText);
         card.appendChild(pAuthor);
 
-        const pagesText = document.createTextNode(book.pages);
+        const pagesText = document.createTextNode(`${book.pages} pages`);
         pPages.appendChild(pagesText);
         card.appendChild(pPages);
 

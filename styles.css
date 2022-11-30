@@ -31,7 +31,9 @@
     font-weight: bold;
     text-align: center;
 }
-
+.card p {
+    text-align: center;
+}
 
 .remove-btn {
     margin-top: 20px;
