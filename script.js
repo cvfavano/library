@@ -114,13 +114,13 @@ function bookAdministration(){
             
             if(book.hasRead){
                 book.hasRead = false;
-                pReadText.textContent = 'no';
+                icon.className = 'fa-solid fa-question';
                 hasReadDiv.className = 'flag btn not-read';
             }
 
             else{
                 book.hasRead = true;
-                pReadText.textContent = 'yes';
+                icon.className = 'fa-solid fa-check';
                 hasReadDiv.className = 'flag btn read';
             }
         });
