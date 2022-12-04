@@ -59,17 +59,16 @@
 
 .flag {
     position: absolute;
-    right: 0;
+    right: 12px;
     top: 0;
-    padding: 10px;
+    padding: 8px 4px;
     border: 1px solid #ccc;
     border-top: none;
-    border-right: none;
     min-width: 45px;
 }
 
  .flag p:first-child{
-    font-size: 0.8em;
+    font-size: 0.7em;
 }
 
 .read {
@@ -77,6 +76,47 @@
 
 }
 
+.fa-check {
+    color: #fff;
+    border-radius: 50%;
+    border: 2px solid #fff;
+    padding: 5px 5px 5px 5px;
+    font-size: 14px;
+}
+
+
+.read .fa-check{
+    color: #333;
+    border: 2px solid #333;
+}
+
 .not-read {
     background: #eee;
+}
+
+.not-read p {
+    color: #555;
+}
+
+.not-read .fa-question {
+    color: #555;
+    border: 2px solid #555;
+    font-size: 14px;
+    border-radius: 50%;
+    padding: 5px 8px;
+}
+
+
+.not-read:hover {
+    background: lightgreen;
+    color: #333;
+   
+}
+.not-read:hover .fa-question {
+    color:#333;
+    border: 2px solid #333;
+}
+
+.not-read:hover > p {
+    color: #333;
 }
