@@ -91,10 +91,18 @@ function bookAdministration(){
 
         //create remove button and append
         let removebutton = document.createElement("button");
+        
+
+        
+        
+        card.appendChild(removebutton); 
+        
         removebutton.dataset.bookId = book.id;
+        
         removebutton.textContent = "Remove";
-        card.appendChild(removebutton);
-        removebutton.className = 'remove-btn index-' + book.id;
+
+
+        removebutton.className = 'remove-btn fa-solid fa-circle-xmark index-' + book.id;
 
         removebutton.addEventListener('click',  (e) => {
             const matchIndex = myLibrary.findIndex((i) =>{

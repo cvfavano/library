@@ -45,23 +45,29 @@
     font-size: 1.20em;
 }
 
-.remove-btn {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    padding: 2px 10px;
-    
-    border: 1px solid #ccc;
-    font-size: 0.75em;
-}
+
 
 .remove-btn:hover {
     background: #123;
     color: #fff;
     transition: 0.5s;
 }
+.remove-btn.fa-solid::before {
+    font-family: "Font Awesome 6 Free";
+    font-weight: 900;
+}
 
-
+.remove-btn {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    padding: 10px 10px;
+    border: none;
+    background-color: #fff;
+    font-size: 0.75em;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 100;
+}
 
 .flag {
     position: absolute;
@@ -126,3 +132,5 @@
 .not-read:hover > p {
     color: #333;
 }
+
+.fa-circle-xmark:before {padding-right: 10px;}
