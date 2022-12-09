@@ -153,7 +153,24 @@ function getMaxID(arr){
     return maxID;
 }
 
+//REFACTOR TO MAKE TOGGLE FUNCTION, maybe use a param
+function openModal() {
+    document.querySelector('#form-modal').style.display = 'block';
+    
+}
+
+function closeModal() {
+    document.querySelector('#form-modal').style.display = 'none';
+    
+}
+
+let modalOpenButton = document.querySelector('.modal-button');
+modalOpenButton.addEventListener("click", openModal);
+
+let modalClose = document.querySelector('span.exit-button');
+modalClose.addEventListener('click', closeModal);
 
 //preventdefault for onsubmit querySelector("#submit")  (?)
 
 bookAdministration();
+
