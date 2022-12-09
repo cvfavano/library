@@ -13,7 +13,26 @@
 <body>
     <div class="container">
         <div class="header">
-            <button>Add Book</button>   
+            <button class="modal-button">Add Book</button>   
+            <div id="form-modal">
+                <div class="modal-content">
+                <span class="exit">&times;</span>
+                    <form>
+                        <label for="title"></label><br>
+                        <input type="text" name="title"> <br>
+                    
+                    <label for="author"></label><br>
+                    <input type="text" name="author"><br>
+                    
+                    <label for="page-number"></label><br>
+                    <input type="number" name="page-number"><br>
+
+                    <label for="has-read"></label><br>
+                    <input type="checkbox" name="has-read"><br>
+                        <button id="submit">submit</button>
+                    </form>
+                </div>
+            </div>
 
         </div>
         

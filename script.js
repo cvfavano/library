@@ -153,4 +153,7 @@ function getMaxID(arr){
     return maxID;
 }
 
+
+//preventdefault for onsubmit querySelector("#submit")  (?)
+
 bookAdministration();
