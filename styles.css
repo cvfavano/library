@@ -167,11 +167,22 @@
     margin: 15% auto;
     padding: 20px;
     border: 1px solid #888;
-    width: 50%;
+    width: 300px;
 }
 
+.modal-content input {
+    margin-bottom: 30px;
+    width: 250px;
+}
+.modal-content input.has-read-check{
+    width: auto;
+}
 .header h2 {
+    margin-bottom: 20px;
     text-align: center;
+    font-size: 1.4em;
 }
 
-/*#submit-button{}*/
+#submit-button{
+    padding: 2px 15px;
+}
