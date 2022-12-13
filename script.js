@@ -23,9 +23,18 @@ function Book(id,title,author,pages,hasRead){
         return `The ${title} by ${author}, ${pages} pages, ${hasRead} read`;
     }
 }
+
+//clear display of card-container
+function removeAllChildNodes(parent){
+    while (parent.firstChild) {
+        parent.removeChild(parent.firstChild)
+    }
+}
 //refactor this
 function bookAdministration(){
     const container = document.querySelector(".card-container");
+
+    removeAllChildNodes(container);
 
     myLibrary.forEach((book) => {
         const cardDiv = document.createElement("div");
@@ -164,6 +173,28 @@ function closeModal() {
     
 }
 
+function addBook(event){
+    event.preventDefault();
+
+    const form = document.getElementById('form');
+    const formData = new FormData(form);
+
+    const newID = getMaxID(myLibrary) + 1;
+    const title = formData.get('title');
+    const author = formData.get('author');
+    const pages = formData.get('page-number');
+    const hasRead = formData.get('has-read');
+
+
+
+    const newBook = new Book(newID,title, author, 295, hasRead);
+
+    myLibrary.push(newBook);
+
+    bookAdministration();
+
+}
+
 let modalOpenButton = document.querySelector('.modal-button');
 modalOpenButton.addEventListener("click", openModal);
 
@@ -172,5 +203,7 @@ modalClose.addEventListener('click', closeModal);
 
 //preventdefault for onsubmit querySelector("#submit")  (?)
 
-bookAdministration();
+let submitButton = document.querySelector('#submit-button');
+submitButton.addEventListener('click', addBook);
 
+bookAdministration();
