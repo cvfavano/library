@@ -188,8 +188,10 @@ function addBook(event){
 
 
     const newBook = new Book(newID,title, author, 295, hasRead);
-
+    closeModal();
+    form.reset();
     myLibrary.push(newBook);
+    
 
     bookAdministration();
 
