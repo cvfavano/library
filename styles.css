@@ -186,3 +186,9 @@
 #submit-button{
     padding: 2px 15px;
 }
+
+.invalid {
+    display:none;
+    visibility: hidden;
+    color: red;
+}

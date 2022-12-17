@@ -20,15 +20,17 @@
     
                 <span class="exit-button">&times;</span>
                 <h2>Add Book to Library</h2>
-                <form id="form">
-                        <label for="title">Book Title</label><br> 
-                        <input required type="text" name="title"/> <br>
+                <form id="form" method="post">
+                        <label for="title">Book Title <span class="title-message invalid">Please enter Title</span></label><br> 
+
+                        <input  type="text" name="title"required/> <br>
                     
-                        <label for="author">Author</label><br>
-                        <input  required type="text" name="author" /><br>
+                        <label for="author">Author <span class="author-message invalid">Please enter Author</span></label><br>
+                        <p class="title-message invalid">Please enter Title</p><br>
+                        <input   type="text" name="author" required/><br>
                     
-                        <label for="page-number">Number of Pages</label><br>
-                        <input required type="number" name="page-number" /><br>
+                        <label for="page-number">Number of Page <span class="pages-message invalid">Please enter number of pages</span>s</label><br>
+                        <input  type="number" name="page-number" required/><br>
 
                         <label for="has-read" class="has-read">Has Read?</label>
                         <input type="checkbox" class="has-read-check" name="has-read" /><br>

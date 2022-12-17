@@ -170,7 +170,6 @@ function openModal() {
 
 function closeModal() {
     document.querySelector('#form-modal').style.display = 'none';
-    
 }
 
 function addBook(event){
@@ -184,10 +183,35 @@ function addBook(event){
     const author = formData.get('author');
     const pages = formData.get('page-number');
     const hasRead = formData.get('has-read');
-
-
-
     const newBook = new Book(newID,title, author, pages, hasRead);
+
+    //validation
+    //refactor: change in to a function
+    if(title === ''){
+        const span = document.querySelector('span.title-message.invalid');
+        span.style.display = 'inline';
+        span.style.visibility = 'visible';
+        return;
+    }
+    if(author === ''){
+        const span = document.querySelector('span.author-message.invalid');
+        span.style.display = 'inline';
+        span.style.visibility = 'visible';
+
+        return;
+    }
+    if(pages === ''){
+        const span = document.querySelector('span.pages-message.invalid');
+        span.style.display = 'inline';
+        span.style.visibility = 'visible';
+
+        return;
+    }
+
+
+
+  
+    console.log(newBook);
     closeModal();
     form.reset();
     myLibrary.push(newBook);
