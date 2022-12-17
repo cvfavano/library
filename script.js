@@ -11,7 +11,6 @@ myLibrary.push(toKill);
 myLibrary.push(hotZone);
 myLibrary.push(statusAnxiety);
 
-//isnt this an object
 function Book(id,title,author,pages,hasRead){
     //constructor
     this.id = id,
@@ -204,21 +203,14 @@ function addBook(event){
         const span = document.querySelector('span.pages-message.invalid');
         span.style.display = 'inline';
         span.style.visibility = 'visible';
-
         return;
     }
-
-
-
   
-    console.log(newBook);
     closeModal();
     form.reset();
-    myLibrary.push(newBook);
-    
+    myLibrary.push(newBook); 
 
     bookAdministration();
-
 }
 
 let modalOpenButton = document.querySelector('.modal-button');
@@ -226,8 +218,6 @@ modalOpenButton.addEventListener("click", openModal);
 
 let modalClose = document.querySelector('span.exit-button');
 modalClose.addEventListener('click', closeModal);
-
-//preventdefault for onsubmit querySelector("#submit")  (?)
 
 let submitButton = document.querySelector('#submit-button');
 submitButton.addEventListener('click', addBook);
