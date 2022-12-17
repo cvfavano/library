@@ -188,7 +188,7 @@
 }
 
 .invalid {
-    display:none;
+    display: none;
     visibility: hidden;
     color: red;
 }

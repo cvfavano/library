@@ -163,6 +163,9 @@ function getMaxID(arr){
 
 //REFACTOR TO MAKE TOGGLE FUNCTION, maybe use a param
 function openModal() {
+    hideValidation('title');
+    hideValidation('author');
+    hideValidation('pages');
     document.querySelector('#form-modal').style.display = 'block';
     
 }
@@ -207,10 +210,19 @@ function addBook(event){
     }
   
     closeModal();
-    form.reset();
+    form.reset()
+    
     myLibrary.push(newBook); 
 
     bookAdministration();
+   
+}
+function hideValidation(element) {
+    const span = document.querySelector(`span.${element}-message.invalid`);
+    span.style.display = 'none';
+    span.style.visibility = 'hidden';
+
+
 }
 
 let modalOpenButton = document.querySelector('.modal-button');
