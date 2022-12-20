@@ -163,9 +163,10 @@ function getMaxID(arr){
 
 //REFACTOR TO MAKE TOGGLE FUNCTION, maybe use a param
 function openModal() {
-    hideValidation('title');
-    hideValidation('author');
-    hideValidation('pages');
+    toggleCSSValidation('title', false);
+    toggleCSSValidation('author', false)
+    toggleCSSValidation('pages', false)
+
     document.querySelector('#form-modal').style.display = 'block';
     
 }
@@ -190,22 +191,16 @@ function addBook(event){
     //validation
     //refactor: change in to a function
     if(title === ''){
-        const span = document.querySelector('span.title-message.invalid');
-        span.style.display = 'inline';
-        span.style.visibility = 'visible';
+        toggleCSSValidation('title', true);
         return;
     }
     if(author === ''){
-        const span = document.querySelector('span.author-message.invalid');
-        span.style.display = 'inline';
-        span.style.visibility = 'visible';
+        toggleCSSValidation('author', true);
 
         return;
     }
     if(pages === ''){
-        const span = document.querySelector('span.pages-message.invalid');
-        span.style.display = 'inline';
-        span.style.visibility = 'visible';
+        toggleCSSValidation('pages', true);
         return;
     }
   
@@ -217,12 +212,18 @@ function addBook(event){
     bookAdministration();
    
 }
-function hideValidation(element) {
+
+function toggleCSSValidation(element, displayStatus){
     const span = document.querySelector(`span.${element}-message.invalid`);
-    span.style.display = 'none';
-    span.style.visibility = 'hidden';
 
-
+    if(!displayStatus) {
+        span.style.display = 'none';
+        span.style.visibility = 'hidden';
+    }
+    else {
+        span.style.display = 'inline';
+        span.style.visibility = 'visible';
+    }
 }
 
 let modalOpenButton = document.querySelector('.modal-button');
