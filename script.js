@@ -161,18 +161,18 @@ function getMaxID(arr){
     return maxID;
 }
 
-//REFACTOR TO MAKE TOGGLE FUNCTION, maybe use a param
-function openModal() {
-    toggleCSSValidation('title', false);
-    toggleCSSValidation('author', false)
-    toggleCSSValidation('pages', false)
 
-    document.querySelector('#form-modal').style.display = 'block';
-    
-}
-
-function closeModal() {
-    document.querySelector('#form-modal').style.display = 'none';
+// display or hide form modal
+function toggleModal(displayModalStatus) {
+    if(displayModalStatus){
+        toggleCSSValidation('title', false);
+        toggleCSSValidation('author', false)
+        toggleCSSValidation('pages', false)
+        document.querySelector('#form-modal').style.display = 'block';  
+    }
+    else{
+        document.querySelector('#form-modal').style.display = 'none';  
+    }
 }
 
 function addBook(event){
@@ -186,28 +186,27 @@ function addBook(event){
     const author = formData.get('author');
     const pages = formData.get('page-number');
     const hasRead = formData.get('has-read');
-    const newBook = new Book(newID,title, author, pages, hasRead);
 
     //validation
-    //refactor: change in to a function
     if(title === ''){
         toggleCSSValidation('title', true);
         return;
     }
     if(author === ''){
         toggleCSSValidation('author', true);
-
         return;
     }
     if(pages === ''){
         toggleCSSValidation('pages', true);
         return;
     }
-  
-    closeModal();
-    form.reset()
-    
+
+
+    const newBook = new Book(newID,title, author, pages, hasRead);
     myLibrary.push(newBook); 
+
+    toggleModal(false);
+    form.reset()
 
     bookAdministration();
    
@@ -227,10 +226,14 @@ function toggleCSSValidation(element, displayStatus){
 }
 
 let modalOpenButton = document.querySelector('.modal-button');
-modalOpenButton.addEventListener("click", openModal);
+modalOpenButton.addEventListener("click", function(){
+    toggleModal(true);
+});
 
 let modalClose = document.querySelector('span.exit-button');
-modalClose.addEventListener('click', closeModal);
+modalClose.addEventListener('click', function() {
+    toggleModal(false);
+})
 
 let submitButton = document.querySelector('#submit-button');
 submitButton.addEventListener('click', addBook);
