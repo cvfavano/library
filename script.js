@@ -48,7 +48,7 @@ function createCard(item){
     const container = document.querySelector(".card-container");
 
     const cardDiv = document.createElement("div");
-    cardDiv.classList.add("card")
+    cardDiv.classList.add("card");
     cardDiv.classList.add("card-" + item.id);
     container.appendChild(cardDiv);
 
@@ -194,28 +194,42 @@ function addBook(event){
     const hasRead = formData.get('has-read');
 
     //validation
-    if(title === ''){
-        toggleCSSValidation('title', true);
-        return;
-    }
-    if(author === ''){
-        toggleCSSValidation('author', true);
-        return;
-    }
-    if(pages === ''){
-        toggleCSSValidation('pages', true);
-        return;
-    }
-
-
+    let formIsValid = checkValidation();
+    if (!formIsValid) return;
+    
     const newBook = new Book(newID,title, author, pages, hasRead);
     myLibrary.push(newBook); 
 
     toggleModal(false);
-    form.reset()
+    form.reset();
 
     bookAdministration();
-   
+}
+
+function checkValidation(){
+    const form = document.getElementById('form');
+    const formData = new FormData(form);
+
+    const title = formData.get('title');
+    const author = formData.get('author');
+    const pages = formData.get('page-number');
+
+    if(title === ''){
+        toggleCSSValidation('title', true);
+        return false;
+    }
+    if(author === ''){
+        toggleCSSValidation('title', false);
+        toggleCSSValidation('author', true);
+        return false;
+    }
+    if(pages === ''){
+        toggleCSSValidation('title', false);
+        toggleCSSValidation('author', false);
+        toggleCSSValidation('pages', true);
+        return false;
+    }
+    return true;
 }
 
 function toggleCSSValidation(element, displayStatus){
