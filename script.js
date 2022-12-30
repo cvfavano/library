@@ -37,7 +37,7 @@ function bookAdministration(){
 
     myLibrary.forEach((book) => {
         const cardDiv = document.createElement("div");
-        cardDiv.classList.add("card");
+        cardDiv.classList.add("card")
         cardDiv.classList.add("card-" + book.id);
         container.appendChild(cardDiv);
     
@@ -98,54 +98,61 @@ function bookAdministration(){
 
 
         //create remove button and append
-        let removebutton = document.createElement("button");
+        let removeButton = document.createElement("button");
         
 
         
         
-        card.appendChild(removebutton); 
+        card.appendChild(removeButton); 
         
-        removebutton.dataset.bookId = book.id;
+        removeButton.dataset.bookId = book.id;
         
-        removebutton.textContent = "Remove";
+        removeButton.textContent = "Remove";
 
 
-        removebutton.className = 'remove-btn fa-solid fa-circle-xmark index-' + book.id;
+        removeButton.className = 'remove-btn fa-solid fa-circle-xmark index-' + book.id;
 
-        removebutton.addEventListener('click',  (e) => {
-            const matchIndex = myLibrary.findIndex((i) =>{
-                return i.id == book.id;
-            } )
-                  
-            //remove from array 
-            myLibrary.splice(matchIndex, 1);
+        createReomveBookListener(removeButton,book);
         
-            //remove from display
-            const card = document.querySelector('.card-' + book.id);
-            card.remove();
 
-        });
-
-        hasReadDiv.addEventListener('click', (e) => {
-            
-            if(book.hasRead){
-                book.hasRead = false;
-                icon.className = 'fa-solid fa-question';
-                hasReadDiv.className = 'flag btn not-read';
-            }
-
-            else{
-                book.hasRead = true;
-                icon.className = 'fa-solid fa-check';
-                hasReadDiv.className = 'flag btn read';
-            }
-        });
+        createHasReadListener(hasReadDiv);
         
     })
 }
 
 
+function createHasReadListener(elem){
+    elem.addEventListener('click', (e) => {
+            
+        if(book.hasRead){
+            book.hasRead = false;
+            icon.className = 'fa-solid fa-question';
+            elem.className = 'flag btn not-read';
+        }
 
+        else{
+            book.hasRead = true;
+            icon.className = 'fa-solid fa-check';
+            elem.className = 'flag btn read';
+        }
+    });
+}
+
+function createReomveBookListener(element,bookObject){
+    element.addEventListener('click',  (e) => {
+        const matchIndex = myLibrary.findIndex((i) =>{
+            return i.id == bookObject.id;
+        } )
+              
+        //remove from array 
+        myLibrary.splice(matchIndex, 1);
+    
+        //remove from display
+        const card = document.querySelector('.card-' + bookObject.id);
+        card.remove();
+
+    });
+}
 
 //function appendText(){}
 
