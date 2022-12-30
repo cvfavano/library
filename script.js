@@ -112,7 +112,7 @@ function bookAdministration(){
 
         removeButton.className = 'remove-btn fa-solid fa-circle-xmark index-' + book.id;
 
-        createReomveBookListener(removeButton,book);
+        createRemoveBookListener(removeButton,book);
         
 
         createHasReadListener(hasReadDiv);
@@ -138,7 +138,7 @@ function createHasReadListener(elem){
     });
 }
 
-function createReomveBookListener(element,bookObject){
+function createRemoveBookListener(element, bookObject){
     element.addEventListener('click',  (e) => {
         const matchIndex = myLibrary.findIndex((i) =>{
             return i.id == bookObject.id;
