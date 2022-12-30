@@ -29,116 +29,117 @@ function removeAllChildNodes(parent){
         parent.removeChild(parent.firstChild)
     }
 }
-//refactor this
+
 function bookAdministration(){
     const container = document.querySelector(".card-container");
 
     removeAllChildNodes(container);
 
     myLibrary.forEach((book) => {
-        const cardDiv = document.createElement("div");
-        cardDiv.classList.add("card")
-        cardDiv.classList.add("card-" + book.id);
-        container.appendChild(cardDiv);
-    
-        const card = document.querySelector(".card-"+ book.id);
-
-        let pTitle = document.createElement("p");
-        pTitle.classList.add("title");
         
-        //Make this a function (?) appendText function
-        //create p tags and append
-        let pAuthor = document.createElement("p");
-        pAuthor.classList.add("author");
-        
-        let pPages = document.createElement("p");
-        pPages.classList.add("page-number");
-
-        let pRead = document.createElement("p");
-        pRead.classList.add("read-status")
-
-        const titleText = document.createTextNode(book.title);
-        pTitle.appendChild(titleText);
-        card.appendChild(pTitle);
-        
-        const authorText = document.createTextNode(book.author);
-        pAuthor.appendChild(authorText);
-        card.appendChild(pAuthor);
-
-        const pagesText = document.createTextNode(`${book.pages} pages`);
-        pPages.appendChild(pagesText);
-        card.appendChild(pPages);
-
-        let hasReadDiv = document.createElement("div");
-        let pTitleRead = document.createElement("p");
-        let readHeader = document.createTextNode('Read')
-        pTitleRead.appendChild(readHeader);
-        hasReadDiv.appendChild(pTitleRead);
-
-        let pReadText = document.createElement("p");
-        let icon = document.createElement("i");
-
-
-        if(book.hasRead ) {
-            pReadText.appendChild(icon).className ="fa-solid fa-check";            
-
-            hasReadDiv.className ='flag btn read';
-        }
-        else {
-            hasReadDiv.className ='flag btn not-read';
-            pReadText.appendChild(icon).className ="fa-solid fa-question";            
-
-        }
-        hasReadDiv.appendChild(pReadText);
-        
-        
-        
-        card.appendChild(hasReadDiv);
-
-
-
-        //create remove button and append
-        let removeButton = document.createElement("button");
-        
-
-        
-        
-        card.appendChild(removeButton); 
-        
-        removeButton.dataset.bookId = book.id;
-        
-        removeButton.textContent = "Remove";
-
-
-        removeButton.className = 'remove-btn fa-solid fa-circle-xmark index-' + book.id;
-
-        createRemoveBookListener(removeButton,book);
-        
-
-        createHasReadListener(hasReadDiv);
+        createCard(book);
+        createRemoveBookListener('.remove-btn', book);
+        createHasReadListener('.flag');
         
     })
 }
 
+function createCard(item){
+    const container = document.querySelector(".card-container");
 
-function createHasReadListener(elem){
-    elem.addEventListener('click', (e) => {
+    const cardDiv = document.createElement("div");
+    cardDiv.classList.add("card")
+    cardDiv.classList.add("card-" + item.id);
+    container.appendChild(cardDiv);
+
+    const card = document.querySelector(".card-"+ item.id);
+
+    let pTitle = document.createElement("p");
+    pTitle.classList.add("title");
+    
+    //Make this a function (?) appendText function
+    //create p tags and append
+    let pAuthor = document.createElement("p");
+    pAuthor.classList.add("author");
+    
+    let pPages = document.createElement("p");
+    pPages.classList.add("page-number");
+
+    let pRead = document.createElement("p");
+    pRead.classList.add("read-status")
+
+    const titleText = document.createTextNode(item.title);
+    pTitle.appendChild(titleText);
+    card.appendChild(pTitle);
+    
+    const authorText = document.createTextNode(item.author);
+    pAuthor.appendChild(authorText);
+    card.appendChild(pAuthor);
+
+    const pagesText = document.createTextNode(`${item.pages} pages`);
+    pPages.appendChild(pagesText);
+    card.appendChild(pPages);
+
+    let hasReadDiv = document.createElement("div");
+    let pTitleRead = document.createElement("p");
+    let readHeader = document.createTextNode('Read')
+    pTitleRead.appendChild(readHeader);
+    hasReadDiv.appendChild(pTitleRead);
+
+    let pReadText = document.createElement("p");
+    let icon = document.createElement("i");
+
+
+    if(item.hasRead ) {
+        pReadText.appendChild(icon).className ="fa-solid fa-check";            
+
+        hasReadDiv.className ='flag btn read';
+    }
+    else {
+        hasReadDiv.className ='flag btn not-read';
+        pReadText.appendChild(icon).className ="fa-solid fa-question";            
+
+    }
+    hasReadDiv.appendChild(pReadText);
+    
+    card.appendChild(hasReadDiv);
+
+
+
+    //create remove button and append
+    let removeButton = document.createElement("button");
+    card.appendChild(removeButton); 
+    
+    removeButton.dataset.bookId = item.id;
+    
+    removeButton.textContent = "Remove";
+
+
+    removeButton.className = 'remove-btn fa-solid fa-circle-xmark index-' + item.id;
+
+}
+
+
+function createHasReadListener(elementClassName, item){
+    const element = document.querySelector(elementClassName);
+    element.addEventListener('click', (e) => {
             
-        if(book.hasRead){
-            book.hasRead = false;
+        if(item.hasRead){
+            item.hasRead = false;
             icon.className = 'fa-solid fa-question';
-            elem.className = 'flag btn not-read';
+            element.className = 'flag btn not-read';
         }
 
         else{
-            book.hasRead = true;
+            item.hasRead = true;
             icon.className = 'fa-solid fa-check';
-            elem.className = 'flag btn read';
+            element.className = 'flag btn read';
         }
     });
 }
 
-function createRemoveBookListener(element, bookObject){
+function createRemoveBookListener(elementClassName, bookObject){
+    const element = document.querySelector(elementClassName);
     element.addEventListener('click',  (e) => {
         const matchIndex = myLibrary.findIndex((i) =>{
             return i.id == bookObject.id;
@@ -155,8 +156,6 @@ function createRemoveBookListener(element, bookObject){
 }
 
 //function appendText(){}
-
-//function createCard(){}
 
 
 
