@@ -81,22 +81,24 @@ function createCard(item){
     // let pAuthor = document.createElement("p");
     // pAuthor.classList.add("author");
     
-    let pPages = document.createElement("p");
-    pPages.classList.add("page-number");
+    createAppendElement(".card-" + item.id, "p", "page-number" ,`${item.pages} pages`);
+
+    // let pPages = document.createElement("p");
+    // pPages.classList.add("page-number");
 
     let pRead = document.createElement("p");
     pRead.classList.add("read-status")
 
-    const titleText = document.createTextNode(item.title);
+    // const titleText = document.createTextNode(item.title);
    // pTitle.appendChild(titleText);
   //  card.appendChild(pTitle);
     
-    const authorText = document.createTextNode(item.author);
-    pAuthor.appendChild(authorText);
+    // const authorText = document.createTextNode(item.author);
+    // pAuthor.appendChild(authorText);
    // card.appendChild(pAuthor);
 
-    const pagesText = document.createTextNode(`${item.pages} pages`);
-    pPages.appendChild(pagesText);
+    // const pagesText = document.createTextNode(`${item.pages} pages`);
+    // pPages.appendChild(pagesText);
     //card.appendChild(pPages);
 
     let hasReadDiv = document.createElement("div");
