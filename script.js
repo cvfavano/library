@@ -38,29 +38,48 @@ function bookAdministration(){
     myLibrary.forEach((book) => {
         
         createCard(book);
-        createRemoveBookListener('.remove-btn', book);
-        createHasReadListener('.flag');
+
+     //   createRemoveBookListener('.remove-btn', book);
+      //  createHasReadListener('.flag');
         
     })
 }
 
+function createAppendElement(parentElement, elementType, elementClassName = '', text=''){
+    const parent = document.querySelector(parentElement);
+    const element = document.createElement(elementType);
+    element.classList.add(elementClassName);
+    
+    element.appendChild(document.createTextNode(text))
+    parent.appendChild(element);
+}
+
 function createCard(item){
-    const container = document.querySelector(".card-container");
+    createAppendElement(".card-container","div", 'card-' + item.id);
 
-    const cardDiv = document.createElement("div");
-    cardDiv.classList.add("card");
-    cardDiv.classList.add("card-" + item.id);
-    container.appendChild(cardDiv);
+    const card = document.querySelector('.card-' + item.id);
+    card.classList.add('card');
+    // constadd container = document.querySelector(".card-container");
 
-    const card = document.querySelector(".card-"+ item.id);
+    // const cardDiv = document.createElement("div");
+    // cardDiv.classList.add("card");
+    // cardDiv.classList.add("card-" + item.id);
+    // container.appendChild(cardDiv);
 
-    let pTitle = document.createElement("p");
-    pTitle.classList.add("title");
+   // const card = document.querySelector(".card-"+ item.id);
+
+   createAppendElement(".card-" + item.id, "p", "title" ,item.title);
+
+    // let pTitle = document.createElement("p");
+    // pTitle.classList.add("title");
     
     //Make this a function (?) appendText function
     //create p tags and append
-    let pAuthor = document.createElement("p");
-    pAuthor.classList.add("author");
+
+    createAppendElement(".card-" + item.id, "p", "author" ,item.author);
+
+    // let pAuthor = document.createElement("p");
+    // pAuthor.classList.add("author");
     
     let pPages = document.createElement("p");
     pPages.classList.add("page-number");
@@ -69,16 +88,16 @@ function createCard(item){
     pRead.classList.add("read-status")
 
     const titleText = document.createTextNode(item.title);
-    pTitle.appendChild(titleText);
-    card.appendChild(pTitle);
+   // pTitle.appendChild(titleText);
+  //  card.appendChild(pTitle);
     
     const authorText = document.createTextNode(item.author);
     pAuthor.appendChild(authorText);
-    card.appendChild(pAuthor);
+   // card.appendChild(pAuthor);
 
     const pagesText = document.createTextNode(`${item.pages} pages`);
     pPages.appendChild(pagesText);
-    card.appendChild(pPages);
+    //card.appendChild(pPages);
 
     let hasReadDiv = document.createElement("div");
     let pTitleRead = document.createElement("p");
@@ -102,13 +121,13 @@ function createCard(item){
     }
     hasReadDiv.appendChild(pReadText);
     
-    card.appendChild(hasReadDiv);
+    //card.appendChild(hasReadDiv);
 
 
 
     //create remove button and append
     let removeButton = document.createElement("button");
-    card.appendChild(removeButton); 
+    //card.appendChild(removeButton); 
     
     removeButton.dataset.bookId = item.id;
     
