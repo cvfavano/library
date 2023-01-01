@@ -59,47 +59,16 @@ function createCard(item){
 
     const card = document.querySelector('.card-' + item.id);
     card.classList.add('card');
-    // constadd container = document.querySelector(".card-container");
 
-    // const cardDiv = document.createElement("div");
-    // cardDiv.classList.add("card");
-    // cardDiv.classList.add("card-" + item.id);
-    // container.appendChild(cardDiv);
-
-   // const card = document.querySelector(".card-"+ item.id);
-
-   createAppendElement(".card-" + item.id, "p", "title" ,item.title);
-
-    // let pTitle = document.createElement("p");
-    // pTitle.classList.add("title");
-    
-    //Make this a function (?) appendText function
-    //create p tags and append
+    createAppendElement(".card-" + item.id, "p", "title" ,item.title);
 
     createAppendElement(".card-" + item.id, "p", "author" ,item.author);
 
-    // let pAuthor = document.createElement("p");
-    // pAuthor.classList.add("author");
-    
     createAppendElement(".card-" + item.id, "p", "page-number" ,`${item.pages} pages`);
 
-    // let pPages = document.createElement("p");
-    // pPages.classList.add("page-number");
 
     let pRead = document.createElement("p");
     pRead.classList.add("read-status")
-
-    // const titleText = document.createTextNode(item.title);
-   // pTitle.appendChild(titleText);
-  //  card.appendChild(pTitle);
-    
-    // const authorText = document.createTextNode(item.author);
-    // pAuthor.appendChild(authorText);
-   // card.appendChild(pAuthor);
-
-    // const pagesText = document.createTextNode(`${item.pages} pages`);
-    // pPages.appendChild(pagesText);
-    //card.appendChild(pPages);
 
     let hasReadDiv = document.createElement("div");
     let pTitleRead = document.createElement("p");
