@@ -66,31 +66,32 @@ function createCard(item){
 
     createAppendElement(".card-" + item.id, "p", "page-number" ,`${item.pages} pages`);
 
+    createFlag(item);
+//has read
+    // let pRead = document.createElement("p");
+    // pRead.classList.add("read-status")
 
-    let pRead = document.createElement("p");
-    pRead.classList.add("read-status")
+    // let hasReadDiv = document.createElement("div");
+    // let pTitleRead = document.createElement("p");
+    // let readHeader = document.createTextNode('Read')
+    // pTitleRead.appendChild(readHeader);
+    // hasReadDiv.appendChild(pTitleRead);
 
-    let hasReadDiv = document.createElement("div");
-    let pTitleRead = document.createElement("p");
-    let readHeader = document.createTextNode('Read')
-    pTitleRead.appendChild(readHeader);
-    hasReadDiv.appendChild(pTitleRead);
-
-    let pReadText = document.createElement("p");
-    let icon = document.createElement("i");
+    // let pReadText = document.createElement("p");
+    // let icon = document.createElement("i");
 
 
-    if(item.hasRead ) {
-        pReadText.appendChild(icon).className ="fa-solid fa-check";            
+    // if(item.hasRead ) {
+    //     pReadText.appendChild(icon).className ="fa-solid fa-check";            
 
-        hasReadDiv.className ='flag btn read';
-    }
-    else {
-        hasReadDiv.className ='flag btn not-read';
-        pReadText.appendChild(icon).className ="fa-solid fa-question";            
+    //     hasReadDiv.className ='flag btn read';
+    // }
+    // else {
+    //     hasReadDiv.className ='flag btn not-read';
+    //     pReadText.appendChild(icon).className ="fa-solid fa-question";            
 
-    }
-    hasReadDiv.appendChild(pReadText);
+    // }
+    // hasReadDiv.appendChild(pReadText);
     
     //card.appendChild(hasReadDiv);
 
@@ -109,6 +110,37 @@ function createCard(item){
 
 }
 
+
+function createFlag(item){
+
+    const container = document.querySelector('.card-'+ item.id)
+        const pRead = document.createElement("p");
+    pRead.classList.add("read-status")
+
+    const hasReadDiv = document.createElement("div");
+    const pTitleRead = document.createElement("p");
+    const readHeader = document.createTextNode('Read')
+    pTitleRead.appendChild(readHeader);
+    hasReadDiv.appendChild(pTitleRead);
+
+    const pReadText = document.createElement("p");
+    const icon = document.createElement("i");
+
+
+    if(item.hasRead ) {
+        pReadText.appendChild(icon).className ="fa-solid fa-check";            
+
+        hasReadDiv.className ='flag btn read';
+    }
+    else {
+        hasReadDiv.className ='flag btn not-read';
+        pReadText.appendChild(icon).className ="fa-solid fa-question";            
+
+    }
+    hasReadDiv.appendChild(pReadText);
+    container.appendChild(hasReadDiv);
+
+}
 
 function createHasReadListener(elementClassName, item){
     const element = document.querySelector(elementClassName);
