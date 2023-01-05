@@ -38,10 +38,9 @@ function bookAdministration(){
     myLibrary.forEach((book) => {
         
         createCard(book);
-
-     //   createRemoveBookListener('.remove-btn', book);
-      //  createHasReadListener('.flag');
         
+        let flag = document.querySelector('.flag');
+        flag.addEventListener('click', createHasReadListener('.flag',book));
     })
 }
 
@@ -60,42 +59,13 @@ function createCard(item){
     const card = document.querySelector('.card-' + item.id);
     card.classList.add('card');
 
-    createAppendElement(".card-" + item.id, "p", "title" ,item.title);
+    createAppendElement(".card-" + item.id, "p", "title", item.title);
 
-    createAppendElement(".card-" + item.id, "p", "author" ,item.author);
+    createAppendElement(".card-" + item.id, "p", "author", item.author);
 
     createAppendElement(".card-" + item.id, "p", "page-number" ,`${item.pages} pages`);
 
     createFlag(item);
-//has read
-    // let pRead = document.createElement("p");
-    // pRead.classList.add("read-status")
-
-    // let hasReadDiv = document.createElement("div");
-    // let pTitleRead = document.createElement("p");
-    // let readHeader = document.createTextNode('Read')
-    // pTitleRead.appendChild(readHeader);
-    // hasReadDiv.appendChild(pTitleRead);
-
-    // let pReadText = document.createElement("p");
-    // let icon = document.createElement("i");
-
-
-    // if(item.hasRead ) {
-    //     pReadText.appendChild(icon).className ="fa-solid fa-check";            
-
-    //     hasReadDiv.className ='flag btn read';
-    // }
-    // else {
-    //     hasReadDiv.className ='flag btn not-read';
-    //     pReadText.appendChild(icon).className ="fa-solid fa-question";            
-
-    // }
-    // hasReadDiv.appendChild(pReadText);
-    
-    //card.appendChild(hasReadDiv);
-
-
 
     //create remove button and append
     let removeButton = document.createElement("button");
@@ -105,16 +75,14 @@ function createCard(item){
     
     removeButton.textContent = "Remove";
 
-
     removeButton.className = 'remove-btn fa-solid fa-circle-xmark index-' + item.id;
 
 }
 
-
 function createFlag(item){
 
     const container = document.querySelector('.card-'+ item.id)
-        const pRead = document.createElement("p");
+    const pRead = document.createElement("p");
     pRead.classList.add("read-status")
 
     const hasReadDiv = document.createElement("div");
@@ -125,37 +93,39 @@ function createFlag(item){
 
     const pReadText = document.createElement("p");
     const icon = document.createElement("i");
-
-
+    
     if(item.hasRead ) {
         pReadText.appendChild(icon).className ="fa-solid fa-check";            
 
-        hasReadDiv.className ='flag btn read';
+        hasReadDiv.className ='flag btn read flag-' +item.id;
     }
     else {
-        hasReadDiv.className ='flag btn not-read';
+        hasReadDiv.className ='flag btn not-read flag-' +item.id;
         pReadText.appendChild(icon).className ="fa-solid fa-question";            
-
     }
+
     hasReadDiv.appendChild(pReadText);
     container.appendChild(hasReadDiv);
-
 }
 
 function createHasReadListener(elementClassName, item){
-    const element = document.querySelector(elementClassName);
+   
+    let element = document.querySelector(elementClassName + '-'+item.id);
+    const parentContainer = document.querySelector('.card-' + item.id);
+    var icon = parentContainer.getElementsByTagName('i');
+   
     element.addEventListener('click', (e) => {
-            
+      
         if(item.hasRead){
             item.hasRead = false;
-            icon.className = 'fa-solid fa-question';
-            element.className = 'flag btn not-read';
+            icon[0].className = 'fa-solid fa-question';
+            element.className = 'flag btn not-read ';
         }
 
         else{
             item.hasRead = true;
-            icon.className = 'fa-solid fa-check';
-            element.className = 'flag btn read';
+            icon[0].className = 'fa-solid fa-check';
+            element.className = 'flag btn read flag';
         }
     });
 }
@@ -173,14 +143,8 @@ function createRemoveBookListener(elementClassName, bookObject){
         //remove from display
         const card = document.querySelector('.card-' + bookObject.id);
         card.remove();
-
     });
 }
-
-//function appendText(){}
-
-
-
 
 //use this for adding new book's ID
 function getMaxID(arr){
@@ -188,7 +152,6 @@ function getMaxID(arr){
     const maxID = Math.max(...idList);
     return maxID;
 }
-
 
 // display or hide form modal
 function toggleModal(displayModalStatus) {
