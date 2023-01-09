@@ -39,8 +39,8 @@ function bookAdministration(){
         
         createCard(book);
         
-        let flag = document.querySelector('.flag');
-        flag.addEventListener('click', createHasReadListener('.flag',book));
+        createHasReadListener('.flag', book);
+        createRemoveBookListener('.card-' + book.id, book);
     })
 }
 
@@ -66,21 +66,24 @@ function createCard(item){
     createAppendElement(".card-" + item.id, "p", "page-number" ,`${item.pages} pages`);
 
     createFlag(item);
-
-    //create remove button and append
-    let removeButton = document.createElement("button");
-    //card.appendChild(removeButton); 
+    createRemoveButton(item.id);
     
-    removeButton.dataset.bookId = item.id;
+}
+function createRemoveButton(id){
+  //  create remove button and append
+  const card = document.querySelector('.card-' + id);
+    let removeButton = document.createElement("button");
+    card.appendChild(removeButton); 
+    
+    removeButton.dataset.bookId = id;
     
     removeButton.textContent = "Remove";
 
-    removeButton.className = 'remove-btn fa-solid fa-circle-xmark index-' + item.id;
+    removeButton.className = 'remove-btn fa-solid fa-circle-xmark index-' + id;
 
 }
-
 function createFlag(item){
-
+    // parentElement, elementType, elementClassName = '', text=''
     const container = document.querySelector('.card-'+ item.id)
     const pRead = document.createElement("p");
     pRead.classList.add("read-status")
@@ -108,14 +111,14 @@ function createFlag(item){
     container.appendChild(hasReadDiv);
 }
 
-function createHasReadListener(elementClassName, item){
+function createHasReadListener( elementClassName, item){
    
     let element = document.querySelector(elementClassName + '-'+item.id);
     const parentContainer = document.querySelector('.card-' + item.id);
     var icon = parentContainer.getElementsByTagName('i');
    
-    element.addEventListener('click', (e) => {
-      
+   element.addEventListener('click', (e) => {
+    
         if(item.hasRead){
             item.hasRead = false;
             icon[0].className = 'fa-solid fa-question';
