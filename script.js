@@ -40,7 +40,7 @@ function bookAdministration(){
         createCard(book);
         
         createHasReadListener('.flag', book);
-        createRemoveBookListener('.card-' + book.id, book);
+        createRemoveBookListener('.index-' + book.id, book);
     })
 }
 
@@ -111,6 +111,24 @@ function createFlag(item){
     container.appendChild(hasReadDiv);
 }
 
+
+
+function createRemoveBookListener(elementClassName, bookObject){
+    const element = document.querySelector(elementClassName);
+    element.addEventListener('click',  (e) => {
+        const matchIndex = myLibrary.findIndex((i) =>{
+            return i.id == bookObject.id;
+        } )
+              
+        //remove from array 
+        myLibrary.splice(matchIndex, 1);
+    
+        //remove from display
+        const card = document.querySelector('.card-' + bookObject.id);
+        card.remove();
+    });
+}
+
 function createHasReadListener( elementClassName, item){
    
     let element = document.querySelector(elementClassName + '-'+item.id);
@@ -130,22 +148,6 @@ function createHasReadListener( elementClassName, item){
             icon[0].className = 'fa-solid fa-check';
             element.className = 'flag btn read flag';
         }
-    });
-}
-
-function createRemoveBookListener(elementClassName, bookObject){
-    const element = document.querySelector(elementClassName);
-    element.addEventListener('click',  (e) => {
-        const matchIndex = myLibrary.findIndex((i) =>{
-            return i.id == bookObject.id;
-        } )
-              
-        //remove from array 
-        myLibrary.splice(matchIndex, 1);
-    
-        //remove from display
-        const card = document.querySelector('.card-' + bookObject.id);
-        card.remove();
     });
 }
 
