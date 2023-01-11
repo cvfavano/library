@@ -29,10 +29,35 @@
 }
 
 .header {
+    display: grid;
     grid-column-start: 1;
     grid-column-end: 5;
+    padding: 15px;
+    
+}
+.header h1 {
+    font-size: 2.25em;
+    grid-column: 1 / span 3;
 }
 
+.header h1 i {
+    font-size: 1em;
+    padding-right: 10px;
+}
+.header div {
+    grid-column: 4 / span 1;
+}
+.header .modal-button {
+    float: right;
+    margin-top: 8px;
+    padding: 5px 8px;
+}
+.header .modal-button i{
+    margin-top: 5px;
+    padding: 0 5px 0 10px;
+    font-size: 1.2em;
+
+}
 .title {
     font-size: 1.2em;
     font-weight: bold;
