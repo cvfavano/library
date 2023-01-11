@@ -78,7 +78,11 @@
     box-shadow: 1px 1px 1px #333;
 
 }
-
+.flag:hover,
+.flag.not-read:hover {
+    background: #ddd;
+ 
+}
  .flag p:first-child{
     font-size: 0.7em;
 }
